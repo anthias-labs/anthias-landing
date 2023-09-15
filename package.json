@@ -1,0 +1,36 @@
+{
+  "name": "anthias",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "export": "next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.6",
+    "@next/font": "13.1.5",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "eslint": "8.32.0",
+    "eslint-config-next": "13.1.5",
+    "framer-motion": "^8.5.2",
+    "next": "^13.4.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.4.1",
+    "react-typing-effect": "^2.0.5",
+    "sass": "^1.57.1",
+    "sharp": "^0.31.3",
+    "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "20.6.0",
+    "@types/react-typing-effect": "^2.0.3"
+  }
+}

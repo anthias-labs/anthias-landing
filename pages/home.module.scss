@@ -1,0 +1,770 @@
+.main {
+  $aqua: #1fcfcf;
+  $pink: #ee40bd;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100vw;
+
+  @media (min-width: 1224px) {
+    background-image: linear-gradient(170deg, $aqua -10%, rgb(0, 0, 0) 10%);
+  }
+
+  .animationWrapper {
+    width: 100%;
+  }
+
+  .navbar {
+    $blue: #1fcfcf;
+    $pink: #ee40bd;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.5rem 4rem;
+    background: transparent;
+
+    .left {
+      .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.8rem;
+
+        transition: all 0.3s;
+        color: $aqua;
+
+        svg {
+          height: 2.8rem;
+          width: auto;
+          fill: none;
+          transition: all 0.3s;
+
+          path,
+          circle {
+            transition: all 0.3s;
+          }
+        }
+
+        &:hover {
+          color: white;
+          svg {
+            fill: none;
+            path {
+              fill: white;
+            }
+            circle {
+              stroke: white;
+            }
+          }
+        }
+
+        .formerly {
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          justify-content: center;
+          color: white;
+          gap: 5px;
+          font-size: 1rem;
+
+          .img {
+            height: 1.4rem;
+            width: auto;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+
+      .button {
+        display: flex;
+        padding: 0.75rem 1rem;
+        border-radius: 0.65rem;
+        font-size: 1.2rem;
+        color: $blue;
+        background-color: transparent;
+        border: 2px solid $blue;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $blue;
+          color: white;
+        }
+      }
+
+      .links {
+        display: flex;
+        flex-direction: row;
+        gap: 4rem;
+        align-items: center;
+
+        .link {
+          cursor: pointer;
+          color: white;
+          width: auto;
+
+          .icon {
+            font-size: 2.2rem;
+            transition: all 0.3s;
+
+            &.discord {
+              height: 1.8rem;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              color: $blue;
+              fill: $blue;
+            }
+          }
+
+          @media (max-width: 1224px) {
+            background-color: #363636;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 3.2rem;
+            width: 3.2rem;
+
+            .icon {
+              font-size: 2rem;
+              &.discord {
+                height: 1.6rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .mobileNavbar {
+    position: sticky;
+    z-index: 1;
+    background-image: linear-gradient(to bottom, black 50%, transparent 80%);
+    $blue: #1fcfcf;
+    $pink: #ee40bd;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5vh 3vw;
+    transition: all 0.3s;
+    top: 0;
+    gap: 2rem;
+    width: 100%;
+
+    &.selected {
+      background-image: linear-gradient(to bottom, black 90%, transparent 100%);
+
+      .bottom {
+        .button {
+        }
+
+        .links {
+          gap: 1.2rem;
+          width: 100%;
+          height: 100%;
+          padding-bottom: 2rem;
+          transition: all 0.3s;
+          border-top: 1px solid white;
+        }
+      }
+    }
+
+    .top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      .left {
+        .anthiasLogo {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.8rem;
+          color: $blue;
+          font-size: 1.4rem;
+          .img {
+            height: 2rem;
+            width: auto;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        flex: row;
+
+        .icon {
+          cursor: pointer;
+          color: white;
+          filter: brightness(0.7);
+          font-size: 5vh;
+        }
+      }
+    }
+
+    .bottom {
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        padding-top: 2rem;
+        gap: 1.2rem;
+        width: 100%;
+        height: 0;
+        text-align: center;
+
+        .link {
+          display: flex;
+          cursor: pointer;
+          width: 100%;
+          justify-content: center;
+
+          color: white;
+          font-weight: 500;
+          font-size: 3vh;
+          display: flex;
+          transition: all 0.3s;
+
+          &:hover {
+            color: $blue;
+          }
+        }
+
+        .button {
+          display: flex;
+          padding: 0.75rem 1rem;
+          border-radius: 0.65rem;
+          font-size: 1.2rem;
+          color: $blue;
+          background-color: transparent;
+          border: 2px solid $blue;
+          transition: all 0.3s;
+          cursor: pointer;
+          justify-content: center;
+          width: 40vw;
+
+          &:hover {
+            background-color: $blue;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .container {
+    $blue: #1fcfcf;
+    $pink: #ee40bd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0rem 16rem;
+    max-width: 100rem;
+
+    @media (max-width: 1224px) {
+      padding: 0rem 2rem;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 2.5rem;
+      .text {
+        text-align: center;
+        span {
+          color: white;
+          font-size: 3.5rem;
+          @media (max-width: 1224px) {
+            font-size: 3rem;
+          }
+        }
+      }
+      .button {
+        color: white;
+        background-color: $blue;
+        border: 2px solid $blue;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1.5rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+
+        @media (max-width: 1224px) {
+          font-size: 1.5rem;
+          padding: 1vh 4vw;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: transparent;
+          color: $blue;
+        }
+      }
+      .img {
+        width: 100%;
+        margin-top: 6rem;
+        border-radius: 20px;
+
+        -webkit-box-shadow: 0px 0px 25px -5px $blue;
+        -moz-box-shadow: 0px 0px 25px -5px $blue;
+        box-shadow: 0px 0px 25px -5px $blue;
+        height: auto;
+
+        @media (max-width: 1224px) {
+          border-radius: 10px;
+        }
+
+        transition: all 0.3s;
+        &:hover {
+          -webkit-box-shadow: 0px 0px 30px -2px $blue;
+          -moz-box-shadow: 0px 0px 30px -2px $blue;
+          box-shadow: 0px 0px 30px -2px $blue;
+        }
+      }
+    }
+    .stats {
+      margin-top: 8rem;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+
+      @media (max-width: 1224px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10vh;
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        @media (max-width: 1224px) {
+          align-items: center;
+          border: 1.5px solid $blue;
+          padding: 2rem 0rem;
+          border-radius: 10px;
+          width: 100%;
+        }
+
+        .statTitle {
+          font-size: 2.5rem;
+          font-weight: bold;
+        }
+        .statText {
+          font-size: 1.5rem;
+          color: $blue;
+          @media (max-width: 1224px) {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .protocols {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 8rem;
+
+      .protocolsTitle {
+        color: white;
+        font-size: 1.5rem;
+
+        @media (max-width: 1224px) {
+          text-align: center;
+        }
+      }
+
+      .protocolsList {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+
+        @media (max-width: 1224px) {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 3vh;
+        }
+
+        .protocol {
+          transition: all 0.3s ease-in-out;
+          display: flex;
+          flex-direction: row;
+          gap: 0.5rem;
+          border-radius: 10px;
+
+          .img {
+            height: 2.5rem;
+            width: auto;
+          }
+        }
+      }
+    }
+    .cards {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      margin-top: 8rem;
+      gap: 3rem;
+
+      .cardsTitle {
+        font-size: 1.6rem;
+        color: white;
+        text-align: center;
+      }
+      .cardList {
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+        width: 100%;
+        justify-content: space-between;
+
+        @media (max-width: 1224px) {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 3rem;
+        }
+
+        .card {
+          display: flex;
+          flex-direction: column;
+          background-color: #101010;
+          border-radius: 5px;
+          border: 2px solid #222;
+          padding: 1.5rem 2rem;
+          transition: all 0.3s;
+          gap: 0.5rem;
+          width: 33%;
+          justify-content: space-between;
+          align-items: center;
+
+          @media (max-width: 1224px) {
+            width: 100%;
+          }
+
+          &:hover {
+            &.pink {
+              outline: 2px solid $pink;
+            }
+            &.blue {
+              outline: 2px solid $blue;
+            }
+          }
+
+          .cardTitle {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.4rem;
+            align-items: left;
+            gap: 1rem;
+            justify-content: space-between;
+            width: 100%;
+
+            .img {
+              width: 1.8rem;
+              height: auto;
+            }
+          }
+
+          .cardText {
+            font-size: 0.9remrem;
+            color: rgb(150, 150, 150);
+          }
+
+          .checkBar {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .check {
+              color: rgb(150, 150, 150);
+            }
+            .bar {
+              width: 100%;
+              border: 1px solid rgb(150, 150, 150);
+
+              &.right {
+                margin-left: 1rem;
+              }
+              &.left {
+                margin-right: 1rem;
+              }
+            }
+          }
+        }
+      }
+      .cardBar {
+        width: 100%;
+        margin-top: 2rem;
+        border-top-width: 2px;
+        border-top-style: solid;
+        height: 10px;
+        border-image: linear-gradient(
+            to right,
+            transparent 20%,
+            $pink 30%,
+            $blue 50%,
+            $pink 70%,
+            transparent 80%
+          )
+          1;
+
+        transition: all 0.5s;
+
+        @media (max-width: 1224px) {
+          border-image: linear-gradient(
+              to right,
+              transparent 0%,
+              $pink 20%,
+              $blue 50%,
+              $pink 80%,
+              transparent 100%
+            )
+            1;
+        }
+
+        &:hover {
+          border-image: linear-gradient(
+              to right,
+              transparent 0%,
+              $pink 20%,
+              $blue 50%,
+              $pink 80%,
+              transparent 100%
+            )
+            1;
+        }
+      }
+    }
+    .bottomTitle {
+      margin-top: 8rem;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+
+      @media (max-width: 1224px) {
+        background-image: url("../assets/backgroundDashboard.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center right;
+      }
+
+      .bottomTitleText {
+        font-size: 2.5rem;
+        color: white;
+        width: 100%;
+        text-align: center;
+        font-weight: 100;
+        z-index: 10;
+
+        @media (max-width: 1224px) {
+          font-size: 3rem;
+        }
+
+        span {
+          color: $blue;
+        }
+      }
+
+      .button {
+        color: white;
+        background-color: $blue;
+        border: 2px solid $blue;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1.5rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+
+        @media (max-width: 1224px) {
+          font-size: 1.5rem;
+          padding: 1vh 8vw;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: transparent;
+          color: $blue;
+        }
+      }
+
+      .bottomTitleBackground {
+        position: absolute;
+        top: -8rem;
+        left: -25rem;
+        z-index: -1;
+        width: 150%;
+        height: auto;
+        z-index: 9;
+      }
+    }
+  }
+
+  .footer {
+    $blue: #1fcfcf;
+    $pink: #ee40bd;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    // padding: 1.5rem 4rem;
+    margin-top: 20rem;
+    margin-bottom: 2rem;
+    z-index: 11;
+
+    @media (max-width: 1224px) {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .left {
+      z-index: 12;
+
+      .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.8rem;
+        transition: all 0.3s;
+        color: $aqua;
+
+        @media (max-width: 1224px) {
+          font-size: 2.4rem;
+        }
+
+        svg {
+          height: 2.8rem;
+          width: auto;
+
+          @media (max-width: 1224px) {
+            height: 3rem;
+          }
+
+          path,
+          circle {
+            transition: all 0.3s;
+          }
+
+          &:hover {
+            color: white;
+            svg {
+              fill: none;
+              path {
+                fill: white;
+              }
+              circle {
+                stroke: white;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+      .links {
+        display: flex;
+        flex-direction: row;
+        gap: 4rem;
+        align-items: center;
+
+        .link {
+          cursor: pointer;
+          color: white;
+          width: auto;
+
+          .icon {
+            font-size: 2.2rem;
+            transition: all 0.3s;
+
+            &.discord {
+              height: 1.8rem;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              color: $blue;
+              fill: $blue;
+            }
+          }
+
+          @media (max-width: 1224px) {
+            background-color: #363636;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 3.2rem;
+            width: 3.2rem;
+
+            .icon {
+              font-size: 2rem;
+              &.discord {
+                height: 1.6rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
