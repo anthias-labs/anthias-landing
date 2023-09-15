@@ -31,7 +31,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import ArticleIcon from "@mui/icons-material/Article";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const AnimationWrapper = ({ children, animate }) => {
+const AnimationWrapper = ({ children, animate = true }) => {
   let variants;
   if (animate == false) {
     variants = {
@@ -74,7 +74,7 @@ const AnimationWrapper = ({ children, animate }) => {
 };
 
 function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState();
+  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
     function handleResize() {
