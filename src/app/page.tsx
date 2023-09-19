@@ -1,31 +1,26 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import Script from "next/script";
-import { Inter } from "@next/font/google";
+'use client'
+
+import styles from './page.module.scss'
+import Head from 'next/head'
+import Script from 'next/script'
 import dashboard from "../assets/dashboard.svg";
-import styles from "./home.module.scss";
-import ReactTypingEffect from "react-typing-effect";
-import { useEffect, useRef, useState } from "react";
-import { useAnimation, motion } from "framer-motion";
+import { useState } from 'react'
+import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+import Image from "next/image";
+import Link from 'next/link';
+import ReactTypingEffect from "react-typing-effect";
 
 import anthiasLogo from "../assets/anthiasLogo.svg";
-import defishyLogo from "../assets/defishyLogo.svg";
 import aaveGhost from "../assets/aaveGhost.svg";
 import aaveLogo from "../assets/aaveLogo.svg";
 import compoundLogo from "../assets/compoundLogo.svg";
 import exactlyLogo from "../assets/exactlyLogo.svg";
 import eulerLogo from "../assets/eulerLogo.svg";
-import venusLogo from "../assets/venusLogo.svg";
-import radiantLogo from "../assets/radiantLogo.svg";
-import discordLogo from "../assets/discordLogo.svg";
-import backgroundDashboard from "../assets/backgroundDashboard.png";
-
 import badge from "../assets/icons/badge.svg";
 import lock from "../assets/icons/lock.svg";
 import users from "../assets/icons/users.svg";
-
 import CheckIcon from "@mui/icons-material/Check";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ArticleIcon from "@mui/icons-material/Article";
@@ -98,7 +93,6 @@ export default function Home() {
   };
 
   const isDesktop = useIsDesktop();
-
   return (
     <>
       <Head>
@@ -111,19 +105,20 @@ export default function Home() {
         <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
         <link rel="”mask-icon”" href="favicon.svg" color="#000000" />
       </Head>
+
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-W4WVR01YBP"
       />
       <Script>
         {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", "G-W4WVR01YBP");
-          `}
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-W4WVR01YBP");
+        `}
       </Script>
       <main className={styles.main}>
         {isDesktop ? (
@@ -589,6 +584,7 @@ export default function Home() {
           </div>
         </AnimationWrapper>
       </main>
+
     </>
-  );
+  )
 }
