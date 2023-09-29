@@ -536,7 +536,7 @@ export default function Home() {
             <div className={styles.right}>
               <div className={styles.links}>
                 <Link
-                  href="https://docs.anthias.xyz/intro/welcome"
+                  href="https://anthias.xyz/liquip.pdf"
                   rel="noreferrer"
                   target="_blank"
                   style={{ textDecoration: "none" }}
