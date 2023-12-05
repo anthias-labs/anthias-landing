@@ -31,18 +31,22 @@ export default async function About() {
         worked with projects including Aave, Compound, Euler, and more.
       </p>
       <p>
-        To see more about out work, <Link href={"/work"}>click here</Link>.
+        See more about <Link href={"/work"}>our work</Link>.
       </p>
       <p>
-        To contact the Anthias team, join our{" "}
+        See more about our work on{" "}
+        <Link href={"https://twitter.com/anthiasxyz"}>X</Link>.
+      </p>
+      <p>
+        To read some of our joint research and other content, see our{" "}
         <Link
           href="https://discord.gg/RCJYpMvkBy"
           rel="noreferrer"
           target="_blank"
         >
-          Discord
-        </Link>{" "}
-        and reach out.
+          Medium
+        </Link>
+        .
       </p>
     </main>
   );

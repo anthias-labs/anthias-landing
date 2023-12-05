@@ -9,6 +9,8 @@ export default function Project({
   description,
   proposalLink = null,
   dashboardLink = null,
+  projectLink = null,
+  paperLink = null,
 }) {
   return (
     <div className={styles.project}>
@@ -20,6 +22,8 @@ export default function Project({
       <div className={styles.links}>
         {proposalLink && <Link href={proposalLink}>Proposal Link</Link>}
         {dashboardLink && <Link href={dashboardLink}>Dashboard Link</Link>}
+        {projectLink && <Link href={projectLink}>Project Link</Link>}
+        {paperLink && <Link href={paperLink}>Paper Link</Link>}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@
 
   padding-top: 3rem;
   background: linear-gradient(145deg, #fff 20%, #1fcfcf 150%);
-  padding: 0.5rem;
+  padding: 0.75rem;
   padding-top: 7rem;
   padding-bottom: 5rem;
 
@@ -25,7 +25,7 @@
   .projects {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
   }
 
   .project {
@@ -33,6 +33,13 @@
     flex-direction: column;
     max-width: 40rem;
     gap: 1rem;
+    padding-bottom: 2rem;
+
+    border-bottom: 1px solid black;
+
+    &:last-child {
+      border-bottom: none;
+    }
 
     h2 {
       font-size: 1.5rem;
