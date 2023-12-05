@@ -31,14 +31,9 @@ export default async function About() {
         worked with projects including Aave, Compound, Euler, and more.
       </p>
       <p>
-        See more about <Link href={"/work"}>our work</Link>.
-      </p>
-      <p>
-        See more about our work on{" "}
-        <Link href={"https://twitter.com/anthiasxyz"}>X</Link>.
-      </p>
-      <p>
-        To read some of our joint research and other content, see our{" "}
+        To see some of our work, click <Link href={"/work"}>here</Link> or go to
+        our <Link href={"https://twitter.com/anthiasxyz"}>X</Link>. To read some
+        of our joint research and other content, see our{" "}
         <Link
           href="https://discord.gg/RCJYpMvkBy"
           rel="noreferrer"
