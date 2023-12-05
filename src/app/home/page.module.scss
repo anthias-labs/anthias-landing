@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+
+  height: calc(100vh);
+  padding-top: 3rem;
+  background: linear-gradient(145deg, #fff 20%, #1fcfcf 150%);
+  padding-top: 7rem;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      font-size: 2rem;
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      margin: 1rem 0;
+      font-weight: 200;
+    }
+
+    p {
+      font-size: 1.25rem;
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-weight: 100;
+      max-width: 20rem;
+      text-align: center;
+    }
+  }
+
+  svg {
+    width: 100%;
+  }
+}
