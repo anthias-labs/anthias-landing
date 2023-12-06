@@ -41,7 +41,15 @@ export default async function About() {
         >
           Medium
         </Link>
-        .
+        . To contact the Anthias team, join our{" "}
+        <Link
+          href="https://discord.gg/RCJYpMvkBy"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Discord
+        </Link>{" "}
+        and reach out.
       </p>
     </main>
   );
