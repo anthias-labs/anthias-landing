@@ -9,7 +9,7 @@ export default async function Home() {
         <h1>anthias labs</h1>
         <p>
           a boutique blockchain r&d firm focused on public goods tooling and
-          tangible research
+          actionable research
         </p>
       </div>
       <svg

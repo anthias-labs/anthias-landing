@@ -24,7 +24,7 @@ export default async function About() {
       </div>
       <p>
         Anthias Labs is a boutique blockchain r&d firm focused on public goods
-        tooling and tangible research. Anthias launched from the Dartmouth
+        tooling and actionable research. Anthias launched from the Dartmouth
         Blockchain club at Dartmouth College in June of 2022. Prior to forming
         Anthias, team members contributed to multiple top DeFi protocols via
         research, development, and growth. Since forming Anthias, the team has
@@ -35,7 +35,7 @@ export default async function About() {
         our <Link href={"https://twitter.com/anthiasxyz"}>X</Link>. To read some
         of our joint research and other content, see our{" "}
         <Link
-          href="https://discord.gg/RCJYpMvkBy"
+          href="https://medium.com/@anthias.xyz"
           rel="noreferrer"
           target="_blank"
         >
