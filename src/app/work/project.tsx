@@ -2,8 +2,10 @@
 
 import styles from "./page.module.scss";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Project({
+  index,
   logo,
   title,
   description,
@@ -13,7 +15,18 @@ export default function Project({
   paperLink = null,
 }) {
   return (
-    <div className={styles.project}>
+    <motion.div
+      className={styles.project}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{
+        opacity: [0, 1],
+        y: [10, 0],
+      }}
+      transition={{
+        duration: 0.2,
+        delay: 0.1 * index + 0.1,
+      }}
+    >
       <h2>
         {logo}
         {title}
@@ -25,6 +38,6 @@ export default function Project({
         {projectLink && <Link href={projectLink}>Project Link</Link>}
         {paperLink && <Link href={paperLink}>Paper Link</Link>}
       </div>
-    </div>
+    </motion.div>
   );
 }

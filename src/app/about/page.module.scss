@@ -5,15 +5,19 @@
   align-items: center;
   gap: 2rem;
 
-  height: calc(100vh);
-  background: linear-gradient(145deg, #fff 20%, #1fcfcf 150%);
+  height: 100vh;
+  background: linear-gradient(145deg, #fff 20%, #1fcfcf 200%);
   padding: 2rem;
   padding-top: 7rem;
+
+  overflow-y: scroll;
 
   .title {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    bottom: 1px solid red;
 
     h1 {
       font-size: 2rem;

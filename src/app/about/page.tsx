@@ -1,12 +1,24 @@
-"use server";
+"use client";
 
 import styles from "./page.module.scss";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-export default async function About() {
+export default function About() {
   return (
     <main className={styles.main}>
-      <div className={styles.title}>
+      <motion.div
+        className={styles.title}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{
+          opacity: [0, 1],
+          y: [10, 0],
+        }}
+        transition={{
+          duration: 0.2,
+          delay: 0.1,
+        }}
+      >
         <svg
           width="61"
           height="62"
@@ -21,16 +33,36 @@ export default async function About() {
         </svg>
 
         <h1>about anthias labs</h1>
-      </div>
-      <p>
+      </motion.div>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{
+          opacity: [0, 1],
+          y: [10, 0],
+        }}
+        transition={{
+          duration: 0.2,
+          delay: 0.2,
+        }}
+      >
         Anthias Labs is a boutique blockchain r&d firm focused on public goods
         tooling and actionable research. Anthias launched from the Dartmouth
         Blockchain club at Dartmouth College in June of 2022. Prior to forming
         Anthias, team members contributed to multiple top DeFi protocols via
         research, development, and growth. Since forming Anthias, the team has
         worked with projects including Aave, Compound, Euler, and more.
-      </p>
-      <p>
+      </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{
+          opacity: [0, 1],
+          y: [10, 0],
+        }}
+        transition={{
+          duration: 0.2,
+          delay: 0.3,
+        }}
+      >
         To see some of our work, click <Link href={"/work"}>here</Link> or go to
         our <Link href={"https://twitter.com/anthiasxyz"}>X</Link>. To read some
         of our joint research and other content, see our{" "}
@@ -50,7 +82,7 @@ export default async function About() {
           Discord
         </Link>{" "}
         and reach out.
-      </p>
+      </motion.p>
     </main>
   );
 }

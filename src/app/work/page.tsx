@@ -1,13 +1,24 @@
-"use server";
+"use client";
 
 import styles from "./page.module.scss";
-import Link from "next/link";
 import Project from "./project";
+import { motion } from "framer-motion";
 
-export default async function Work() {
+export default function Work() {
   return (
     <main className={styles.main}>
-      <div className={styles.title}>
+      <motion.div
+        className={styles.title}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{
+          opacity: [0, 1],
+          y: [10, 0],
+        }}
+        transition={{
+          duration: 0.2,
+          delay: 0.1,
+        }}
+      >
         <svg
           width="61"
           height="62"
@@ -20,9 +31,10 @@ export default async function Work() {
             stroke="black"
           />
         </svg>
-      </div>
+      </motion.div>
       <div className={styles.projects}>
         <Project
+          index={0}
           logo={
             <svg
               width="155"
@@ -65,6 +77,7 @@ export default async function Work() {
           }
         />
         <Project
+          index={1}
           logo={
             <svg
               width="155"
@@ -111,6 +124,7 @@ export default async function Work() {
           }
         />
         <Project
+          index={2}
           logo={
             <svg
               width="155"
@@ -162,6 +176,7 @@ export default async function Work() {
           }
         />
         <Project
+          index={3}
           logo={
             <svg
               width="16"
@@ -185,6 +200,7 @@ export default async function Work() {
           paperLink={"https://www.anthias.xyz/liquip.pdf"}
         />
         <Project
+          index={4}
           logo={
             <svg
               width="155"
@@ -236,6 +252,7 @@ export default async function Work() {
           }
         />
         <Project
+          index={5}
           logo={
             <svg
               width="155"
@@ -287,6 +304,7 @@ export default async function Work() {
           }
         />
         <Project
+          index={6}
           logo={
             <svg
               width="157"
@@ -361,6 +379,7 @@ export default async function Work() {
           dashboardLink={"https://app.anthias.xyz/protocols/exactly"}
         />
         <Project
+          index={7}
           logo={
             <svg
               width="155"
@@ -551,6 +570,7 @@ export default async function Work() {
           }
         />
         <Project
+          index={8}
           logo={
             <svg
               width="226"
@@ -645,6 +665,7 @@ export default async function Work() {
           }
         />
         <Project
+          index={9}
           logo={
             <svg
               width="154"
