@@ -12,6 +12,15 @@
 
   overflow-y: scroll;
 
+  video {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
   .title {
     display: flex;
     flex-direction: column;

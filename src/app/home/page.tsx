@@ -1,11 +1,27 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import styles from "./page.module.scss";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.keyCode === 27) {
+        setShowVideo(false);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
   return (
     <main className={styles.main}>
+      {showVideo && <video loop autoPlay playsInline src="/anthi.mp4" />}
       <motion.div
         className={styles.title}
         initial={{ opacity: 0, y: 10 }}
@@ -20,8 +36,9 @@ export default function Home() {
       >
         <h1>anthias labs</h1>
         <p>
-          a boutique blockchain r&d firm focused on public goods tooling and
-          actionable research
+          a boutique blockchain r&d firm focused on public goods tooling{" "}
+          <span onClick={() => setShowVideo(true)}>and</span> actionable
+          research
         </p>
       </motion.div>
       <motion.svg
