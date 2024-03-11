@@ -33,10 +33,26 @@ export default function Project({
       </h2>
       <p>{description}</p>
       <div className={styles.links}>
-        {proposalLink && <Link href={proposalLink}>Proposal Link</Link>}
-        {dashboardLink && <Link href={dashboardLink}>Dashboard Link</Link>}
-        {projectLink && <Link href={projectLink}>Project Link</Link>}
-        {paperLink && <Link href={paperLink}>Paper Link</Link>}
+        {proposalLink && (
+          <Link href={proposalLink} target="_blank">
+            Proposal Link
+          </Link>
+        )}
+        {dashboardLink && (
+          <Link href={dashboardLink} target="_blank">
+            Dashboard Link
+          </Link>
+        )}
+        {projectLink && (
+          <Link href={projectLink} target="_blank">
+            Project Link
+          </Link>
+        )}
+        {paperLink && (
+          <Link href={paperLink} target="_blank">
+            Paper Link
+          </Link>
+        )}
       </div>
     </motion.div>
   );
