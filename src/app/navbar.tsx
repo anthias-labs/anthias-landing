@@ -11,8 +11,8 @@ export default function Navbar() {
   return (
     <div className={styles.navbar}>
       <Link
-        href="/home"
-        className={current === "home" ? styles.current : undefined}
+        href="/"
+        className={current === "" ? styles.current : undefined}
         style={{
           backgroundColor: "#EFFCFC",
         }}
