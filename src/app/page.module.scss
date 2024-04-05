@@ -62,7 +62,18 @@
   }
 
   @media (max-width: 768px) {
+    svg {
+      width: 100%;
+    }
+
     .protocols {
+      gap: 1rem;
+
+      .protocol {
+        svg {
+          width: 85%;
+        }
+      }
     }
   }
 }
