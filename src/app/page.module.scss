@@ -5,7 +5,7 @@
   align-items: center;
   gap: 2rem;
 
-  height: calc(100vh);
+  height: 100vh;
   background: linear-gradient(145deg, #fff 20%, #1fcfcf 200%);
   padding: 2rem;
   padding-top: 7rem;
@@ -62,6 +62,8 @@
   }
 
   @media (max-width: 768px) {
+    overflow-y: hidden;
+
     svg {
       width: 100%;
     }
