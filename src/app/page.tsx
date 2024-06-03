@@ -38,7 +38,7 @@ export default function Home() {
       >
         <h1>anthias labs</h1>
         <p>
-          a boutique blockchain r&d firm focused on public goods tooling{" "}
+          a boutique blocasfaskchain r&d firm focused on public goods tooling{" "}
           <span onClick={() => setShowVideo(true)}>and</span> actionable
           research
         </p>
