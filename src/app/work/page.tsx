@@ -64,7 +64,7 @@ export default function Work() {
           }
           title={"Risk Partner"}
           description={
-            "In April 2024, the Anthias Labs tean began working with Ionic lending protocol as a risk partner, working on risk monitoring tooling, asset parameterization recommendations, and more, ensuring the proper tooling and risk controls are continually in place for the Ionic market to function heathily."
+            "In April 2024, the Anthias Labs team began working with Ionic lending protocol as a risk partner, working on risk monitoring tooling, asset parameterization recommendations, and more, ensuring the proper tooling and risk controls are continually in place for the Ionic market to function healthily."
           }
           projectLink={"https://app.anthias.xyz/protocols/ionic/ionic_v1_mode"}
         />
