@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/img/logo-black.svg">
+    <link rel="icon" type="image/svg+xml" href="/img/logo-black.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="/img/logo.svg" media="(prefers-color-scheme: dark)">
+    <title>anthias labs</title>
+    <style>
+        @keyframes fadeRing {
+            0%, 40%, 100% { opacity: 0.2; }
+            20% { opacity: 0.6; }
+        }
+        @keyframes clouds {
+            0% {background-position: 0 0;}
+            100% {background-position: -1000px 0;}
+        }
+        @keyframes spin {
+            0% {transform: rotate(0deg)}
+            100% {transform: rotate(360deg)}
+        }
+        *{margin: 0; padding: 0; box-sizing: border-box; font-size: 16px; font-family: 'Times New Roman', Times, serif;}
+        body{background: black;}
+        .bg-container{z-index: -1; position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+        .bg{position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; background: center 46% no-repeat transparent; background-size: cover;}
+        .bg.background{background-image: url('/img/combined-background.jpg');}
+        .bg.ring1{
+            background-image: url('/img/ring1.png');
+            opacity: 0.2;
+            animation: fadeRing 5s infinite 0s;
+        }
+        .bg.ring2{
+            background-image: url('/img/ring2.png');
+            opacity: 0.2;
+            animation: fadeRing 5s infinite 1.66s;
+        }
+        .bg.ring3{
+            background-image: url('/img/ring3.png');
+            opacity: 0.2;
+            animation: fadeRing 5s infinite 3.32s;
+        }
+        .bg.foreground{background-image: url('/img/combined-foreground.png');}
+        .clouds{position: absolute; top:0; left:0; width: 200vw; height: 100vh; background: url('/img/clouds.png') top left repeat; opacity: 0.15; animation: clouds 20s infinite linear;}
+        .overlay{background: rgba(0,0,0,0.2); mix-blend-mode: overlay;}
+
+        .header{z-index: 1; position: fixed; top: 0; left: 0; width:100%; display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 0 40px;}
+        .header > div{width: 250px; text-align: center;}
+        .header > div:first-child{text-align: left;}
+        .header > div:last-child{text-align: right;}
+        .header a{color: white; font-style: italic; text-decoration: none;}
+        .header .title, .header .nav{padding-bottom: 4px;}
+        .nav a:hover{border-bottom: 1px white solid;}
+        .nav a.active{border-bottom: 1px white solid;}
+        .header h1{font-weight: normal; color: white; font-style: italic;}
+        .logo a{display: inline-flex; align-items: center; justify-content: left; gap: 10px;}
+        .logo a img, .logo a svg{width: 25px; height: auto;}
+
+        .content-container{position: fixed; top: 0; left: 0; width: 100%; height: 100%; padding-top: 100px; padding-bottom: 50px; background: rgba(0,0,0,0.5);}
+        .content-padder{border: 1px #564F53 solid; border-radius: 5px; background: white; max-width: 600px; height: 100%; margin: 0 auto; padding: 70px; display: flex; flex-direction: column; gap: 20px; transition: all 500ms;}
+        .content-header{border-bottom: 1px #564F53  solid; text-align: center; padding-bottom: 14px;}
+        .content-header img, .content-header svg{width: 20px; height: auto; margin: 0 auto;}
+        .content-footer{border-top: 1px #564F53  solid; padding-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px;}
+        .content-footer a {text-decoration: none;}
+        .content-footer img, .content-footer svg{width: 14px; height: auto; margin: 0 auto;}
+        .content-footer svg:first-child{width: 18px; height: 14px;}
+        .content{width: 100%; overflow: auto; color: #564F53; flex-grow: 1;}
+        .content a{color: #564F53;}
+        
+        .tagline{font-style: italic; padding-bottom: 30px;}
+        .tabs{width: 100%; display: flex; justify-content: space-between; align-items: center; padding-bottom: 30px;}
+        .tabs a{display: block; width: 100%; border-left: 1px #564F53  solid; padding: 5px 10px; text-decoration:none; font-style: italic; transition: all 500ms;}
+        .tabs a span{padding-bottom: 2px;}
+        .tabs a.active span{border-bottom: 1px #564F53  solid;}
+        .tabs a:hover span{border-bottom: 1px #564F53  solid;}
+
+        .tab{display: none;}
+        .tab.active{display: block;}
+
+        .content-container *{font-size: 14px;}
+
+        .article{border-bottom: 1px rgba(86,79,83,0.5) solid; padding-bottom: 20px; margin-bottom: 20px;}
+        .article.intro{border-bottom: none; margin-bottom: 0px;}
+        .article.unpadded{padding-bottom:0px;}
+        .article:last-of-type{border-bottom: none; margin-bottom: 0;}
+        .article-title{padding-bottom: 15px;}
+        .article-title .bold{display: block; padding-bottom: 5px; font-size: 16px;}
+        .underlined{border-bottom: 1px #564F53 solid;}
+        .bold{font-weight: bold;}   
+        .article-content p:not(:last-child){margin-bottom: 20px;}
+        .read-more{text-align: center; padding-top: 20px; font-style: italic;}
+
+        .article a{font-style: italic;}
+
+        .article-content ul{padding-left: 20px;}
+        
+        .hidden{opacity: 0; pointer-events: none; visibility: hidden; transition: all 500ms;}
+        .unhidden{opacity: 1; pointer-events: auto; visibility: visible; transition: all 500ms;}
+        .transparent{background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 20px; border: 0px none;}
+        .transparent .content{color: rgba(255,255,255,0.8);}
+        .transparent .content-header, .transparent .content-footer{border-color: rgba(255,255,255,0.8);}
+        .transparent .tabs a{border-color: rgba(255,255,255,0.8); color: rgba(255,255,255,0.8);}
+        .transparent a{color: rgba(255,255,255,0.8);}
+        .transparent .article{border-color: rgba(255,255,255,0.8);}
+        .transparent .tabs a.active span{border-color: rgba(255,255,255,0.8);}
+        .transparent .tabs a:hover span{border-color: rgba(255,255,255,0.8);}
+        .transparent .article .underlined{border-color: rgba(255,255,255,0.8);}
+        .transparent svg path{stroke: rgba(255,255,255,0.8);}
+
+        .loader{position: fixed; top:0; left:0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}
+        .loader svg{width: 50px; height: 50px; animation: spin 1s infinite linear;}
+
+        .external-logos{width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 15px; transition: 500ms all;}
+        .external-logos a, .external-logos img{width: 100%; transition: 500ms all;}
+        .external-logos a{display: flex;}
+
+        .transparent .external-logos, .transparent .article-title img{filter: invert(1);}
+        .article-title img{width:70px; height: auto;}
+        #open-source .article.intro{padding-bottom: 40px;}
+        #open-source .article:not(.intro) .article-title{padding-bottom:10px;}
+
+        @media ((min-width: 800px) and (max-aspect-ratio: 2.1/1)) or ((max-width: 800px) and (max-aspect-ratio: 1.4/1)) {
+            body{background: #f8f3ea;}
+            .header a, .header h1{color: #564F53;}
+            .nav a:hover{border-bottom: 1px #564F53 solid;}
+            .nav a.active{border-bottom: 1px #564F53 solid;}
+            .content-container{background: rgba(0,0,0,0);}
+            .header svg path, .loader svg path{stroke: #564F53;}
+            .transparent{background: rgba(0,0,0,0.4);}
+        }
+        @media (max-width: 800px) {
+            .bg{width:140%; height:140%;}
+        }
+        @media (max-width: 767px) {
+            .header .title{display: none;}
+        }
+        @media (max-width: 600px) or (max-height: 600px) {
+            .header{position: static;}
+            .content-container{position: static; padding:0; background: transparent;}
+            .content-container.hidden:not(.unhidden){height: 0;}
+        }
+        @media (max-width: 600px) {
+            .content-container *{font-size: 14px;}
+            .content-padder{padding: 40px 30px;}
+            .tabs{justify-content: space-between; gap: 5px; flex-wrap: wrap;}
+            .tabs a{width: auto; white-space: nowrap; padding: 5px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="/">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.8691 5.88701L19.9091 12.9637M12.8691 5.88701L5.98909 12.9637M12.8691 5.88701L16.857 1.96924C17.2183 1.61435 16.967 1 16.4606 1H9.17272C8.66275 1 8.41315 1.62172 8.78154 1.97435L12.8691 5.88701ZM19.9091 12.9637L13.0291 19.794M19.9091 12.9637L24.031 8.77215C24.3859 8.41117 25 8.66252 25 9.16879V16.6412C25 17.1436 24.3939 17.3967 24.0366 17.0435L19.9091 12.9637ZM13.0291 19.794L17.0784 24.0441C17.4215 24.4042 17.1662 25 16.6688 25H9.14039C8.63485 25 8.38317 24.3875 8.74265 24.032L13.0291 19.794ZM13.0291 19.794L9.53818 16.5021L5.98909 12.9637M5.98909 12.9637L1.95791 16.8421C1.5985 17.1879 1 16.9332 1 16.4345V9.24733C1 8.74022 1.6158 8.48926 1.97026 8.85192L5.98909 12.9637Z" stroke="white" stroke-width="0.565698"/>
+                </svg>                    
+                <span>anthias labs</span>
+            </a>
+        </div>
+        <div class="title">
+            <h1>Mission-Critical Risk Partners</h1>
+        </div>
+        <div class="nav">
+            <a href="#about-us" class="content-toggle">About us</a>
+        </div>
+    </div>
+    <div class="content-container hidden">
+        <div class="content-padder">
+            <div class="content-header">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.8691 5.88701L19.9091 12.9637M12.8691 5.88701L5.98909 12.9637M12.8691 5.88701L16.857 1.96924C17.2183 1.61435 16.967 1 16.4606 1H9.17272C8.66275 1 8.41315 1.62172 8.78154 1.97435L12.8691 5.88701ZM19.9091 12.9637L13.0291 19.794M19.9091 12.9637L24.031 8.77215C24.3859 8.41117 25 8.66252 25 9.16879V16.6412C25 17.1436 24.3939 17.3967 24.0366 17.0435L19.9091 12.9637ZM13.0291 19.794L17.0784 24.0441C17.4215 24.4042 17.1662 25 16.6688 25H9.14039C8.63485 25 8.38317 24.3875 8.74265 24.032L13.0291 19.794ZM13.0291 19.794L9.53818 16.5021L5.98909 12.9637M5.98909 12.9637L1.95791 16.8421C1.5985 17.1879 1 16.9332 1 16.4345V9.24733C1 8.74022 1.6158 8.48926 1.97026 8.85192L5.98909 12.9637Z" stroke="#564F53" stroke-width="0.565698"/>
+                </svg>
+            </div>
+            <div class="content">
+                <div class="tabs">
+                    <a href="#advisory" class="active"><span>A</span>dvisory</a>
+                    <a href="#monitoring"><span>M</span>onitoring</a>
+                    <a href="#research"><span>R</span>esearch</a>
+                    <a href="#open-source"><span>O</span>pen-Source</a>
+                </div>
+                <div class="tab active" id="advisory">
+                    <div class="article intro">
+                        <div class="article-title">
+                            <span class="bold">Anthias Labs Advisory</span>
+                        </div>
+                        <div class="article-content">
+                            <p>Anthias Labs is a boutique on-chain advisory firm focused on DeFi risk management and system design that has worked on risk parameterization and / or risk monitoring with DAOs and other blockchain-based companies including Aave, Compound, Euler, Exactly and more. We also work directly with DAO ecosystems on ecosystem development. These clients have included the Solana Foundation, the Uniswap Foundation, Arbitrum DAO, and the Optimism Collective.</p>
+                            <p>We take a hands-on approach to risk management and system design by working closely with our partners, ideally from day one. We have helped our clients navigate asset depeggings, liquidation cascades, flash crashes, and more. We work with a handful of clients at a time and align our interests closely with theirs.</p>
+                            <div class="external-logos">
+                                <a href="https://arbitrum.io" target="_blank"><img src="/img/other/arbitrum.svg"></a>
+                                <a href="https://solana.org" target="_blank"><img src="/img/other/solana-foundation.svg"></a>
+                                <a href="https://compound.finance" target="_blank"><img src="/img/other/compound.svg"></a>
+                                <a href="https://www.euler.finance" target="_blank"><img src="/img/other/euler.svg"></a>
+                                <a href="https://www.uniswapfoundation.org" target="_blank"><img src="/img/other/uniswap-foundation.svg"></a>
+                                <a href="https://www.optimism.io" target="_blank"><img src="/img/other/optimism.svg"></a>
+                                <a href="https://aave.com" target="_blank"><img src="/img/other/aave.svg"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab" id="monitoring">
+                    <div class="article intro">
+                        <div class="article-title">
+                            <span class="bold">Anthias Labs Monitoring</span>
+                        </div>
+                        <div class="article-content">
+                            <p>
+                                Anthias Labs builds system monitoring tooling for our protocol partners. These systems monitor protocol health via factors including:
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>Individual position health scores</li>
+                                    <li>Position correlation matrices</li>
+                                    <li>Protocol Bad debt</li>
+                                    <li>Collateral at risk of liquidation</li>
+                                    <li>Amounts of assets that can be swapped with suitable slippage in the case of a liquidation</li>
+                                    <li>Etc.</li>
+                                </ul>
+                            </p>
+                            <p>
+                                <a href="https://app.anthias.xyz/protocols/ionic/ionic_v1_mode/positions/table?sort=total_borrowed&limit=10&paginate=1%2C10&tokens=&health_factor=">View an Anthias Labs monitoring system at the link here.</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab" id="research">
+                    <div class="articles">
+                        <div class="article intro unpadded">
+                            <div class="article-title">
+                                <span class="bold">Anthias Labs Research</span>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <div class="article-title">
+                                <a href="https://github.com/anthias-labs/research/blob/main/Liquidity%20Providers%20Taking%20Position%20of%20Volatility.pdf" target="_blank">Liquidity Providers Taking Position of Volatility</a>
+                            </div>
+                            <div class="article-content">
+                                <p>
+                                    A comprehensive report on the modern landscape of AMM's, elucidating liquidity providers' exposure 
+                                    to volatility and simulating the effects of volatility and impermanent loss. 
+                                    Specifically, we illustrate how a non-50/50 Balancer pool enables LPs to express views on directional 
+                                    volatility, and Uniswap v3’s mechanism permits precision in liquidity provision, effectively allowing 
+                                    LPs to bet on specific price ranges.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <div class="article-title">
+                                <a href="https://github.com/anthias-labs/research/blob/main/Anthias%20Liquip%20Score%20Measuring%20Liquidation%20Probability.pdf" target="_blank">Anthias Liquip Score: Measuring Liquidation Probability</a>
+                            </div>
+                            <div class="article-content">
+                                <p>
+                                    This paper outlines a new method for determining the probability of liquidation for users 
+                                    of a borrowing protocol. Additionally, we introduce the “Days Until Liquidation” concept. 
+                                    This provides an estimate of the time left until a position might face liquidation under 
+                                    current market conditions, adding another layer of understanding to our risk assessments. 
+                                    These improved methods allow for a clearer view of liquidation health for individual positions 
+                                    and the protocol as a whole.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <div class="article-title">
+                                <a href="https://github.com/anthias-labs/research/blob/main/A%20Framework%20for%20Designing%20Corruption-Resistant%20Operator%20Networks.pdf" target="_blank">A Framework for Designing Corruption-Resistant Operator Networks</a>
+                            </div>
+                            <div class="article-content">
+                                <p>
+                                    This paper elucidates how to design a robust and corruption-resistant operator system. 
+                                    Designing a robust and corruption-resistant system requires a systematic approach that 
+                                    considers the roles and responsibilities of the operator network, the verification and 
+                                    detection mechanisms, and the penalty mechanisms. Methodologies here outlined in this paper.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="read-more">
+                        <a href="https://github.com/anthias-labs/research" target="_blank">Read more Research</a>
+                    </div>
+                </div>
+                <div class="tab" id="open-source">
+                    <div class="article intro">
+                        <div class="article-title">
+                            <span class="bold">Anthias Labs Open-Source</span>
+                        </div>
+                        <div class="article-content">
+                            <p>Anthias Labs contributes to a variety of open-source tools and frameworks, all of which can be found on our Github linked below. For a few highlights:</p>
+                        </div>
+                    </div>
+                    <div class="article">
+                        <div class="article-title">
+                            <a href="https://github.com/anthias-labs/arbiter" target="_blank">
+                                <img src="/img/other/arbiter.svg" alt="Arbiter">
+                            </a>
+                        </div>
+                        <div class="article-content">
+                            <p>
+                                Arbiter allows for fine-grained control over a (Rust) Ethereum Virtual Machine (EVM) to provide 
+                                stateful Ethereum smart-contract interactions and the creation of behaviors that can be coalesced 
+                                into complex scenarios or automation.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="article">
+                        <div class="article-title">
+                            <a href="https://github.com/anthias-labs/arena" target="_blank">
+                                <img src="/img/other/arena.svg" alt="Arena">
+                            </a>
+                        </div>
+                        <div class="article-content">
+                            <p>
+                                Arena introduces a novel approach to LP simulation through a highly-configurable event-driven runtime. 
+                                Each event consists of integral market information for a strategy, from which the actor can derive 
+                                insight from.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="article">
+                        <div class="article-title">
+                            <a href="https://github.com/anthias-labs/flare" target="_blank">
+                                <img src="/img/other/flare.svg" alt="Flare">
+                            </a>
+                        </div>
+                        <div class="article-content">
+                            <p>
+                                Flare is the Command Line Interface for developers on Solana. 
+                                Flare allows Solana-focused developers to send transactions, 
+                                which could be both sending SOL to an account or interacting with a smart contract, 
+                                check SOL balance for a given address, generate keypair for a new wallet, and more from the CLI.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="read-more">
+                        <a href="https://github.com/anthias-labs" target="_blank">See more Open-Source Work</a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-footer">
+                <a href="mailto:team@anthias.xyz" target="_blank">
+                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1.5024V7.42548C12 7.64989 11.9109 7.86512 11.7522 8.0238C11.5935 8.18249 11.3783 8.27163 11.1538 8.27163H1.84615C1.62174 8.27163 1.40652 8.18249 1.24783 8.0238C1.08915 7.86512 1 7.64989 1 7.42548V1.5024M12 1.5024C12 1.27799 11.9109 1.06277 11.7522 0.904083C11.5935 0.745398 11.3783 0.65625 11.1538 0.65625H1.84615C1.62174 0.65625 1.40652 0.745398 1.24783 0.904083C1.08915 1.06277 1 1.27799 1 1.5024M12 1.5024L6.98146 4.97671C6.83999 5.0746 6.67204 5.12704 6.5 5.12704C6.32796 5.12704 6.16001 5.0746 6.01854 4.97671L1 1.5024" stroke="#564F53" stroke-width="0.846154" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/anthiasxyz" target="_blank">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_147_1086" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="12" height="12">
+                            <path d="M0 0H12V12H0V0Z" fill="white"/>
+                        </mask>
+                        <g mask="url(#mask0_147_1086)">
+                            <path d="M9.45 0.5625H11.2903L7.27029 5.16879L12 11.4379H8.29714L5.39486 7.6365L2.07771 11.4379H0.235714L4.53514 6.50936L0 0.563357H3.79714L6.41657 4.03736L9.45 0.5625ZM8.80286 10.3339H9.82286L3.24 1.60907H2.14629L8.80286 10.3339Z" fill="#564F53"/>
+                        </g>
+                    </svg>                        
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-container">
+        <div class="bg background"></div>
+        <div class="bg ring1"></div>
+        <div class="bg ring2"></div>
+        <div class="bg ring3"></div>
+        <div class="bg foreground"></div>
+        <div class="clouds"></div>
+        <div class="bg overlay"></div>
+    </div>
+    <div class="loader hidden">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.8691 5.88701L19.9091 12.9637M12.8691 5.88701L5.98909 12.9637M12.8691 5.88701L16.857 1.96924C17.2183 1.61435 16.967 1 16.4606 1H9.17272C8.66275 1 8.41315 1.62172 8.78154 1.97435L12.8691 5.88701ZM19.9091 12.9637L13.0291 19.794M19.9091 12.9637L24.031 8.77215C24.3859 8.41117 25 8.66252 25 9.16879V16.6412C25 17.1436 24.3939 17.3967 24.0366 17.0435L19.9091 12.9637ZM13.0291 19.794L17.0784 24.0441C17.4215 24.4042 17.1662 25 16.6688 25H9.14039C8.63485 25 8.38317 24.3875 8.74265 24.032L13.0291 19.794ZM13.0291 19.794L9.53818 16.5021L5.98909 12.9637M5.98909 12.9637L1.95791 16.8421C1.5985 17.1879 1 16.9332 1 16.4345V9.24733C1 8.74022 1.6158 8.48926 1.97026 8.85192L5.98909 12.9637Z" stroke="white" stroke-width="0.565698"/>
+        </svg>
+    </div>
+    <script>
+        const preloadImages = async () => {
+            const loadImage = (src) => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.src = src;
+                    img.onload = resolve;
+                });
+            };
+            const imagePreloadPromises = [
+                '/img/combined-background.jpg',
+                '/img/combined-foreground.png',
+                '/img/ring1.png',
+                '/img/ring2.png',
+                '/img/ring3.png',
+                '/img/clouds.png',
+            ].map(loadImage);
+            const delay = new Promise(resolve => setTimeout(resolve, 250));
+            await Promise.all([...imagePreloadPromises, delay]);
+        };
+
+        const resolveHash = () => {
+            if (window.location.hash) {
+                if (!contentContainer.classList.contains('unhidden')) {
+                    contentToggles[0].click();
+                }
+                document.querySelector(`.tabs a[href="${window.location.hash}"]`)?.click();
+            }
+        };
+        window.addEventListener('popstate', () => {
+            resolveHash();
+        });
+
+        const bgContainer = document.querySelector('.bg-container');
+        const titleContainer = document.querySelector('.title');
+        const navContainer = document.querySelector('.nav');
+        const loaderContainer = document.querySelector('.loader');
+        const contentContainer = document.querySelector('.content-container');
+        const contentToggles = document.querySelectorAll('.content-toggle');
+        const contentPadder = document.querySelector('.content-padder');
+        const contentLogo = document.querySelector('.content-header img, .content-header svg');
+        const tabs = document.querySelectorAll('.tab');
+        const tabButtons = document.querySelectorAll('.tabs a');
+
+        bgContainer.classList.add('hidden');
+        titleContainer.classList.add('hidden');
+        navContainer.classList.add('hidden');
+        loaderContainer.classList.add('unhidden');
+        preloadImages().then(() => {
+            loaderContainer.classList.remove('unhidden');
+            bgContainer.classList.add('unhidden');
+            titleContainer.classList.add('unhidden');
+            navContainer.classList.add('unhidden');
+            resolveHash();
+        });
+
+        let closeHandler = (e) => {
+            if (!contentContainer.classList.contains('unhidden')) {
+                return;
+            }
+            contentContainer.classList.remove('unhidden');
+            [...contentToggles].forEach(btn => btn.classList.remove('active'));
+            const noHash = window.location.pathname + window.location.search;
+            if (window.location.hash !== noHash) {
+                history.pushState(null, null, noHash);
+            }
+            document.removeEventListener('click', closeHandler);
+        };
+
+        contentPadder.addEventListener('click', e => {
+            e.stopPropagation();
+        });
+
+        [...contentToggles].forEach(contentToggle => {
+            contentToggle.addEventListener('click', e => {
+                e.preventDefault();
+                if (!contentContainer.classList.contains('unhidden')) {
+                    contentContainer.classList.add('unhidden');
+                    [...contentToggles].forEach(btn => btn.classList.add('active'));
+                    const activeHash = !window.location.hash && document.querySelector('.tabs a.active')?.getAttribute('href');
+                    if (activeHash) {
+                        if (window.location.hash !== activeHash) {
+                            history.pushState(null, null, activeHash);
+                        }
+                    }
+                    setTimeout(() => document.addEventListener('click', closeHandler), 0);
+                }
+            });
+        });
+        
+        contentLogo.addEventListener('click', e => {
+            contentPadder.classList.toggle('transparent');
+        });
+
+        [...tabButtons].forEach(tabButton => {
+            tabButton.addEventListener('click', e => {
+                e.preventDefault();
+                const tabHash = e.currentTarget.getAttribute('href');
+                const targetTab = document.querySelector(tabHash);
+                if (window.location.hash !== tabHash) {
+                    history.pushState(null, null, tabHash);
+                }
+                [...tabs, ...tabButtons].forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                e.currentTarget.classList.add('active');
+                targetTab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
